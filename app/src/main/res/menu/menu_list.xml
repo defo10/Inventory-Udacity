@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.android.inventory.ListActivity">
+    <item
+        android:id="@+id/delete_all_entries_list"
+        android:title="Delete Inventory"
+        android:icon="@drawable/ic_delete_white_24dp"
+        app:showAsAction="always"  />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        app:showAsAction="never" />
+</menu>

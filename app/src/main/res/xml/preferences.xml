@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="@string/NAME"
+        android:title="Enter your name"
+        android:summary="This is the name at the end of your mail to your supplier"
+        android:dialogTitle="Change name"/>
+
+    <EditTextPreference
+        android:key="@string/MAIL"
+        android:title="Enter the mail of the supplier"
+        android:summary="This is the mail of your supplier"
+        android:dialogTitle="Change mail"/>
+
+</PreferenceScreen>

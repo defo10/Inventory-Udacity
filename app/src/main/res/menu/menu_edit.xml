@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.android.inventory.EditActivity">
+    <item
+        android:id="@+id/make_image_edit"
+        android:title="Take a photo"
+        android:icon="@drawable/ic_add_a_photo_white_24dp"
+        app:showAsAction="always"  />
+    <item
+        android:id="@+id/delete_single_entry_edit"
+        android:title="Delete Entry"
+        android:icon="@drawable/ic_delete_white_24dp"
+        app:showAsAction="always"  />
+    <item
+        android:id="@+id/saveChanges_edit"
+        android:title="Save Changes"
+        android:icon="@drawable/ic_done_white_24dp"
+        app:showAsAction="always" />
+</menu>

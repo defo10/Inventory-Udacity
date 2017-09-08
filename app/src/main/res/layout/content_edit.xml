@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.android.inventory.EditActivity"
+    tools:showIn="@layout/activity_edit">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- first CardView -->
+        <android.support.v7.widget.CardView
+            android:id="@+id/first_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Name -->
+                <LinearLayout
+                    android:id="@+id/name_view_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="name"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+                    <EditText
+                        android:id="@+id/edittext_name"
+                        android:layout_width="0dp"
+                        android:maxLines="1"
+                        android:inputType="textShortMessage"
+                        android:layout_weight="6"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <!-- Price -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/name_view_group">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="price"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+                    <com.example.android.inventory.CustomEditText
+                        android:id="@+id/edittext_price"
+                        android:inputType="numberDecimal"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <!-- second CardView -->
+        <android.support.v7.widget.CardView
+            android:layout_below="@+id/first_card_view"
+            android:id="@+id/second_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="8dp">
+
+            <!-- id -->
+            <LinearLayout
+                android:padding="8dp"
+                android:id="@+id/id_view_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="ID"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+                <TextView
+                    android:id="@+id/id_textview"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="3"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!-- third CardView -->
+        <android.support.v7.widget.CardView
+            android:layout_below="@id/second_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:padding="8dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:text="Quantity"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+                    <TextView
+                        android:id="@+id/quantity_textview"
+                        android:padding="8dp"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:text="1"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+
+                    <Button
+                        android:id="@+id/decrement_qt_edit"
+                        android:layout_width="100dp"
+                        android:layout_height="75dp"
+                        android:layout_toLeftOf="@id/divider"
+                        android:background="@color/colorAccent"
+                        android:elevation="8dp"
+                        android:onClick="decrementQuantity"
+                        android:text="- 1" />
+
+                    <Button
+                        android:id="@+id/increment_qt_edit"
+                        android:layout_width="100dp"
+                        android:layout_height="75dp"
+                        android:layout_toRightOf="@id/divider"
+                        android:background="@color/colorAccent"
+                        android:elevation="8dp"
+                        android:onClick="incrementQuantity"
+                        android:text="+ 1" />
+
+                </RelativeLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="75dp"
+                    android:layout_marginRight="75dp"
+                    android:text="Order"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:elevation="8dp"
+                    android:onClick="order" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>
