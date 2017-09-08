@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -73,6 +74,12 @@ public class EditActivity extends AppCompatActivity implements
         // when an item was clicked, currentItemUri has content
         currentItemUri = getIntent().getData();
 
+        // make order button invisible when adding item
+        if (currentItemUri == null) {
+            Button orderButton = (Button) findViewById(R.id.order_button_edit);
+            orderButton.setVisibility(View.GONE);
+        }
+
         getSupportActionBar().setElevation(4);
 
         // find all Views
@@ -113,6 +120,10 @@ public class EditActivity extends AppCompatActivity implements
     // I find it more structured if I use the OnClick-Option in the XML's instead of
     // defining an OnCLickListener in the onCreate-Method
     public void decrementQuantity(View v){
+        if (quantityTextView.getText().toString().isEmpty()){
+            quantityTextView.setText("0");
+            return;
+        }
         String currentValueString = quantityTextView.getText().toString();
         int valueInt = Integer.parseInt(currentValueString);
         if (valueInt > 0) {
@@ -123,6 +134,10 @@ public class EditActivity extends AppCompatActivity implements
     }
 
     public void incrementQuantity(View v){
+        if (quantityTextView.getText().toString().isEmpty()){
+            quantityTextView.setText("1");
+            return;
+        }
         String currentValueString = quantityTextView.getText().toString();
         int valueInt = Integer.parseInt(currentValueString);
         int newValue = valueInt + 1;
@@ -169,7 +184,7 @@ public class EditActivity extends AppCompatActivity implements
 
         } else {
             // fire off the mail intent
-            String mail = pref.getString(getString(R.string.MAIL), null).trim();
+            String[] mail = { pref.getString(getString(R.string.MAIL), null).trim() };
             String name = pref.getString(getString(R.string.NAME), null);
 
             String itemName = nameEditText.getText().toString();
@@ -181,12 +196,18 @@ public class EditActivity extends AppCompatActivity implements
                     name;
 
 
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto", mail, null));
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+
+            emailIntent.setData(Uri.parse("mailto:"));
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Order of " + itemName + " | " + name);
             emailIntent.putExtra(Intent.EXTRA_TEXT, text);
-            startActivity(Intent.createChooser(emailIntent, "Send email"));
-            Toast.makeText(this, "Please enter the currency", Toast.LENGTH_LONG).show();
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, mail);
+            if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(Intent.createChooser(emailIntent, "Send email"));
+                Toast.makeText(this, "Please enter the currency", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "No mail-app available!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -278,21 +299,19 @@ public class EditActivity extends AppCompatActivity implements
         String priceString = priceEditText.getText().toString().replaceAll("\\D", "");
         int price;
         try{
-            //double priceAsDouble = Double.valueOf(priceString);
-            //price = (int) priceAsDouble * 100;
             price = Integer.valueOf(priceString);
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Price must contain numbers", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        // get Quantity and validate
+        // get Quantity and validate whether it is a integer
         String currentQuantityString = quantityTextView.getText().toString();
         int quantityInt;
         try{
             quantityInt = Integer.parseInt(currentQuantityString);
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Quantity must contain numbers", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "Quantity must contain numbers, please use the '+1' or '-1'-Button", Toast.LENGTH_LONG).show();
             return false;
         }
 
