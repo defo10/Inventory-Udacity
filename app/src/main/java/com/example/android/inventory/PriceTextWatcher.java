@@ -3,13 +3,9 @@ package com.example.android.inventory;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.text.NumberFormat;
-
-import static android.R.attr.editable;
-import static android.R.id.edit;
 
 /**
  * Mainly taken from:
@@ -49,21 +45,6 @@ public class PriceTextWatcher implements TextWatcher {
             editText.setSelection(formatted.length()-2);
             editText.addTextChangedListener(this);
         }
-
-        /*EditText editText = editTextWeakReference.get();
-        if (editText == null) return;
-        String s = editable.toString();
-        editText.removeTextChangedListener(this);
-        // clean String from every char but a digit
-        // this is the form we save it in our db later
-        String cleanString = s.toString().replaceAll("\\D", "");
-
-        // this is the money in a XXX,XX or XXX.XX form
-        double parsed = Double.parseDouble(cleanString);
-        String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
-        editText.setText(formatted);
-        editText.setSelection(formatted.length());
-        editText.addTextChangedListener(this);*/
     }
 
     @Override

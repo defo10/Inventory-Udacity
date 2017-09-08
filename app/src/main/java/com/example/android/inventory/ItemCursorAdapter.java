@@ -1,20 +1,17 @@
 package com.example.android.inventory;
 
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,7 +21,6 @@ import com.example.android.inventory.data.DbHelper;
 
 import java.text.NumberFormat;
 
-import static android.R.attr.id;
 import static com.example.android.inventory.R.id.decrement_list_button;
 import static com.example.android.inventory.R.id.list_clickaction;
 
@@ -63,7 +59,7 @@ public class ItemCursorAdapter extends CursorAdapter {
         Bitmap thumbnail = DbHelper.getBitmap(thumbnailAsByte);
         vh.imageView.setImageBitmap(thumbnail);
 
-        // onTouchListener
+        // default onTouchListener
         final int id = cursor.getInt(cursor.getColumnIndex(InventoryItems._ID));
         vh.viewGroup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +72,29 @@ public class ItemCursorAdapter extends CursorAdapter {
             }
         });
 
+        vh.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditActivity.class);
+                // this is where we know from that the want to edit an entry and not
+                // create a new one
+                intent.setData(ContentUris.withAppendedId(DatabaseContract.InventoryItems.CONTENT_URI, id));
+                context.startActivity(intent);
+            }
+        });
+
+        vh.quantity_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditActivity.class);
+                // this is where we know from that the want to edit an entry and not
+                // create a new one
+                intent.setData(ContentUris.withAppendedId(DatabaseContract.InventoryItems.CONTENT_URI, id));
+                context.startActivity(intent);
+            }
+        });
+
+        // decrement listener
         vh.decrementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

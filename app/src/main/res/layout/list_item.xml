@@ -74,9 +74,6 @@
         android:layout_weight="1"
         android:background="@color/colorAccent"
         android:elevation="7dp"
-        android:onClick="decreaseQuantity"
         android:text="-1" />
-    
-
 
 </LinearLayout>

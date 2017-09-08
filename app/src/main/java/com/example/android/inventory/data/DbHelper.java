@@ -10,8 +10,6 @@ import com.example.android.inventory.data.DatabaseContract.InventoryItems;
 
 import java.io.ByteArrayOutputStream;
 
-import static android.R.attr.bitmap;
-
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "inventory.db";
