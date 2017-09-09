@@ -178,8 +178,8 @@ public class EditActivity extends AppCompatActivity implements
         // get all the values for our mail-intent
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        if (pref.getString(getString(R.string.MAIL), null).trim().equals("") ||
-                pref.getString(getString(R.string.NAME), null).equals("")){
+        if (pref.getString(getString(R.string.MAIL), "").trim().equals("") ||
+                pref.getString(getString(R.string.NAME), "").equals("")){
             Toast.makeText(EditActivity.this, "Please define the mail and name in the settings", Toast.LENGTH_SHORT).show();
 
         } else {
